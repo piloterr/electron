@@ -1,0 +1,117 @@
+{
+  "name": "piloterr",
+  "productName": "Piloterr",
+  "version": "0.3.2",
+  "description": "Electron app Piloterr",
+  "copyright": "Copyright © 2020 Piloterr",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "pack": "electron-builder --dir",
+    "build": "electron-builder -mwl -p never",
+    "deploy": "electron-builder -mwl -p onTagOrDraft",
+    "clean": "concurrently \"prettier './**/*.js' --write\" \"eslint ./**/*.js --fix\"",
+    "clean-check": "concurrently \"prettier './**/*.js' --list-different\" \"eslint ./**/*.js\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn clean-check",
+      "pre-push": "yarn clean"
+    }
+  },
+  "keywords": [
+    "piloterr",
+    "desktop"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piloterr/electron.git",
+    "report": "https://github.com/piloterr/electron/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc"
+  },
+  "author": {
+    "name": "piloterr",
+    "email": "hello@piloterr.com"
+  },
+  "license": "MIT",
+  "build": {
+    "appId": "com.piloterr.piloterr-electron",
+    "copyright": "Copyright © 2020 piloterr",
+    "publish": [
+      {
+        "provider": "github",
+        "repo": "electron",
+        "owner": "piloterr",
+        "releaseType": "release"
+      }
+    ],
+    "files": [
+      "./build/**/*",
+      "./src/**/*",
+      "./app.js",
+      "./package.json"
+    ],
+    "mac": {
+      "artifactName": "Piloterr-${version}.${ext}",
+      "category": "public.app-category.productivity",
+      "darkModeSupport": true
+    },
+    "win": {
+      "artifactName": "Piloterr-${version}.${ext}",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "artifactName": "Piloterr-${version}.${ext}",
+      "target": [
+        "deb",
+        "rpm",
+        "AppImage",
+        "tar.gz"
+      ],
+      "category": "Development"
+    },
+    "dmg": {
+      "artifactName": "Piloterr-${version}.${ext}"
+    },
+    "pkg": {
+      "artifactName": "Piloterr-${version}.${ext}"
+    },
+    "nsis": {
+      "artifactName": "Piloterr-${version}.${ext}"
+    },
+    "appImage": {
+      "artifactName": "Piloterr-${version}.${ext}"
+    }
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "del": "^5.1.0",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
+    "electron-log": "^4.1.4",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5"
+  },
+  "dependencies": {
+    "about-window": "^1.12.1",
+    "darkreader": "^4.9.2",
+    "electron-localshortcut": "^3.2.1",
+    "electron-store": "^5.1.1",
+    "electron-updater": "^4.3.1",
+    "electron-window-state": "^5.0.1",
+    "file-system": "^2.2.2"
+  }
+}
