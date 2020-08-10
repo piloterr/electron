@@ -1,7 +1,7 @@
 {
   "name": "piloterr",
   "productName": "Piloterr",
-  "version": "0.3.2",
+  "version": "0.0.1",
   "description": "Electron app Piloterr",
   "copyright": "Copyright © 2020 Piloterr",
   "main": "app.js",
